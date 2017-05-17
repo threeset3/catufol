@@ -152,7 +152,13 @@ Configuration.prototype.karmaBase = function () {
 
 Configuration.prototype.karmaTest = function () {
     const base = this.karmaBase();
-    base.browsers = ['Chrome'];
+    base.browsers = ['ChromeHeadless'];
+    base.customLaunchers = {
+        ChromeHeadless: {
+            base: 'Chrome',
+            flags: ['--headless', '--disable-gpu', '--remote-debugging-port=9222', '-incognito']
+        }
+    }
     base.singleRun = true;
     base.reporters = ['dots', 'coverage-istanbul', 'junit'];
     base.junitReporter= {
